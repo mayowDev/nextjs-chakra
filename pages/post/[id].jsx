@@ -7,10 +7,8 @@ import { Button } from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import inputnStyles from '../../styles/Input.module.css'
 
-const posts = `https://jsonplaceholder.typicode.com/posts`;
-const users = `https://jsonplaceholder.typicode.com/users`;
 
-const getPost = id => `${posts}/${id}`;
+const users = `https://jsonplaceholder.typicode.com/users`;
 const getUser = id => `${users}/${id}`;
 
 const Post = ({post: { id, title, body }, user}) =>{
@@ -71,8 +69,16 @@ const Post = ({post: { id, title, body }, user}) =>{
 
 Post.getInitialProps = async ctx => {
   const { id } = ctx.query;
-  const postResponse = await fetch(getPost(id));
-  const post = await postResponse.json();
+  const posts = JSON.parse(localStorage.getItem("posts")) ;   
+
+  let post 
+
+  for (var i in posts) {
+    if (posts[i].id == id) {
+      post = posts[i] ;
+       break; 
+    }
+  }
 
   const userResponse = await fetch(getUser(post.userId));
   const user = await userResponse.json();
