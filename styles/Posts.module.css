@@ -1,0 +1,17 @@
+.items{
+    display: flex;
+    justify-content: flex-start ;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+
+}
+
+.items > li{
+    margin: .5rem;
+}
+
+.backLink{
+    text-decoration: underline;
+}
